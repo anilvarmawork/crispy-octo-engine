@@ -22,6 +22,7 @@ class AddUser extends Component {
                  </input>
                  <input label = "Last Name" value={this.state.newUser.lastName}  propname = "firstName" type="text" onChange = {this.handleChange}>
                  </input>
+                 <button className= 'submitUser' onClick={() => { this.props.addOneUser(newUser)}}>Save</button>
             </div>
         );
     }
