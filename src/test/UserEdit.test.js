@@ -8,7 +8,9 @@ describe('testing the edit', () => {
     beforeEach(()=> {
         wrapper = shallow(<UserEdit/>)
     })
+
     it('testing the number of inputs', () => {
-       expect(wrapper.find('input')).toHaveLength(2);
-    })
+        expect(wrapper.find('input')).toHaveLength(2);
+     })
+    
 })

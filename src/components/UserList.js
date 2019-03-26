@@ -8,20 +8,22 @@ class UserList extends Component {
       }
       
     render() {
-        console.log(this.props.users);
+ // console.log(this.props.users);
         return (
-            <div id='thisIsID'>
-                <ul className = "UserList"> 
-                {
-                    this.props
-                        .users
-                        .map((person) => 
-                            <li key={person.id}>{person.firstName} {person.lastName} 
-                            <button className= {person.id} onClick={() => { this.props.editOne(person)}}>Edit</button>
-                            </li>)
+            <div>
+                <div id='thisIsID'>
+                     <ul className = "UserList"> 
+                     {
+                         this.props
+                             .users
+                             .map((person) => 
+                                 <li key={person.id}>{person.firstName} {person.lastName} 
+                                 <button className= {person.id} onClick={() => { this.props.editOne(person)}}>Edit</button>
+                                 </li>)
                             
-                }
-                </ul>
+                        }
+                     </ul>
+                </div>
             </div>
         );
     }
