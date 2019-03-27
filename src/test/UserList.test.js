@@ -2,7 +2,6 @@ import {shallow} from 'enzyme';
 import '../setupTests';
 import UserList from '../components/UserList';
 import React from 'react';
-import UserEdit from '../components/UserEdit';
 
 
 describe('test for userlist', () => {
@@ -30,7 +29,7 @@ describe('test for userlist', () => {
 
     it('testing the button', () => {
         const editUserButton = wrapper.find('button');
-        expect(editUserButton.length).toBe(2);
+        expect(editUserButton.length).toBe(4);
 
         // wrapper.simulate("click");
     })
@@ -40,6 +39,14 @@ describe('test for userlist', () => {
         const submitState={firstName:"Mathias",lastName:"Kana",id:"b"};
         wrapperEdit.setState(submitState);
         wrapperEdit.find('.b').simulate("click");
+        expect(mockEditPerson).toBeCalledWith(submitState);
+    })
+    it('testing the click for delete person', () => {
+        const mockEditPerson=jest.fn();
+        const wrapperEdit=shallow(<UserList users = {users} deleteOne={mockEditPerson}/>);
+        const submitState={firstName:"Mathias",lastName:"Kana",id:"b"};
+        wrapperEdit.setState(submitState);
+        wrapperEdit.find('.bdelete').simulate("click");
         expect(mockEditPerson).toBeCalledWith(submitState);
     })
 

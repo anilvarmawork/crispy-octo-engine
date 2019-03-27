@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import App from '../components/App';
 import { shallow} from "enzyme" ;
 import "../setupTests";
-import AddUser from '../components/AddUser';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -24,8 +23,7 @@ describe('testing the app component', () => {
   })
 
   it('testing the state having values', () => {
-    const initUsers = [{"firstName": "anil", "lastName": "varma", "id": "a"},
-    {"firstName": "Mathias", "lastName": "Kana", "id": "b"}];
+    const initUsers = wrapper.state().users;
     expect(wrapper.state().users).toEqual(initUsers);
   })
 
@@ -39,10 +37,17 @@ describe('testing the app component', () => {
 
   it('testing the addOneUser function',()=>{
     const initUsers = {"firstName": "anil", "lastName": "varma", "id": "c"};
-    const finalUsers = [{"firstName": "anil", "lastName": "varma", "id": "a"},
-    {"firstName": "Mathias", "lastName": "Kana", "id": "b"},{"firstName": "anil", "lastName": "varma", "id": "c"}];
-     wrapper.instance().addOneUser(initUsers);
-     expect(wrapper.state().users).toEqual(finalUsers);
+    const finalUsers = wrapper.state().users;
+    finalUsers.push(initUsers);
+    wrapper.instance().addOneUser(initUsers);
+    expect(wrapper.state().users).toEqual(finalUsers);
+  })
+
+  it('testing deleteOneUser function', () => {
+    const users = wrapper.state().users;
+    console.log(users);//2
+    wrapper.instance().deleteOneUser(users[1]);//1
+    expect(wrapper.state().users[0]).toEqual(users[0]);
   })
 
 })

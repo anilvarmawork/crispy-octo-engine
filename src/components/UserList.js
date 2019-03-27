@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import { className } from 'postcss-selector-parser';
 
 class UserList extends Component {
-
-    editUser = (person) => {
-        console.log(person);
-      }
       
     render() {
  // console.log(this.props.users);
@@ -19,8 +14,8 @@ class UserList extends Component {
                              .map((person) => 
                                  <li key={person.id}>{person.firstName} {person.lastName} 
                                  <button className= {person.id} onClick={() => { this.props.editOne(person)}}>Edit</button>
+                                 <button className = {person.id + "delete"} onClick = {() => {this.props.deleteOne(person)}}>Delete</button>
                                  </li>)
-                            
                         }
                      </ul>
                 </div>
